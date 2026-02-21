@@ -15,11 +15,10 @@ import EditPostForm from '@/components/EditPostForm/EditPostForm';
 import CreatePostForm from '@/components/CreatePostForm/CreatePostForm';
 
 interface PostsClientProps {
-  initialData: { posts: Post[]; totalCount: number };
   userId: string;
 }
 
-export default function PostsClient({ initialData, userId }: PostsClientProps) {
+export default function PostsClient({ userId }: PostsClientProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +33,6 @@ export default function PostsClient({ initialData, userId }: PostsClientProps) {
         ...(userId !== 'All' && { userId }),
       }),
     placeholderData: keepPreviousData,
-    initialData,
   });
 
   const toggleModal = () => setIsModalOpen((prev) => !prev);
