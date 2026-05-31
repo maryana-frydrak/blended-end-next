@@ -25,9 +25,14 @@ export default function UsersMenu() {
       // Отримуємо позицію та розміри кнопки у вікні браузера,
       // щоб точно позиціонувати випадаюче меню відносно цієї кнопки
       const rect = buttonRef.current.getBoundingClientRect();
+
+      const isClient = typeof window !== 'undefined';
+      const scrollY = isClient ? window.scrollY : 0;
+      const scrollX = isClient ? window.scrollX : 0;
+
       setPosition({
-        top: rect.bottom + window.scrollY + 4, // додаємо скрол, щоб меню було у правильному місці навіть при прокрутці
-        left: rect.left + window.scrollX, // додаємо скрол по X
+        top: rect.bottom + scrollY + 4, // додаємо скрол, щоб меню було у правильному місці навіть при прокрутці
+        left: rect.left + scrollX, // додаємо скрол по X
         width: rect.width, // встановлюємо ширину меню такою ж, як у кнопки
       });
     }

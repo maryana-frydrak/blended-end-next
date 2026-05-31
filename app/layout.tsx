@@ -4,17 +4,16 @@ import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 
 import 'modern-normalize';
 import './globals.css';
-import Modal from '@/components/Modal/Modal';
 
 export default function RootLayout({
   children,
   modal,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
+  modal?: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <TanStackProvider>
           <Header />

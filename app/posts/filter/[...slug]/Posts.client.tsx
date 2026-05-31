@@ -25,7 +25,7 @@ export default function PostsClient({ userId }: PostsClientProps) {
   const [editedPost, setEditedPost] = useState<Post | null>(null);
 
   const { data } = useQuery({
-    queryKey: ['posts', searchQuery, currentPage, userId],
+    queryKey: ['posts', { searchQuery, currentPage, userId }],
     queryFn: () =>
       fetchPosts({
         searchText: searchQuery,
@@ -33,6 +33,7 @@ export default function PostsClient({ userId }: PostsClientProps) {
         ...(userId !== 'All' && { userId }),
       }),
     placeholderData: keepPreviousData,
+    refetchOnMount: false,
   });
 
   const toggleModal = () => setIsModalOpen((prev) => !prev);
