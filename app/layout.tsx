@@ -4,6 +4,7 @@ import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 
 import 'modern-normalize';
 import './globals.css';
+import Modal from '@/components/Modal/Modal';
 
 export default function RootLayout({
   children,
