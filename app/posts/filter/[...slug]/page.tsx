@@ -13,7 +13,7 @@ export default async function PostsPage({ params }: PostsPageProps) {
 
   await queryClient.prefetchQuery({
     queryKey: ['posts', { searchQuery: '', currentPage: 1, userId }],
-    queryFn: () => fetchPosts({ searchText: '', page: 1, userId }),
+    queryFn: () => fetchPosts({ searchText: '', page: 1, ...(userId !== 'All' && { userId }) }),
   });
 
   return (

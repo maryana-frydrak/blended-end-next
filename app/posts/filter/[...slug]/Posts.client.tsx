@@ -5,7 +5,6 @@ import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useDebouncedCallback } from 'use-debounce';
 import PostList from '@/components/PostList/PostList';
 import SearchBox from '@/components/SearchBox/SearchBox';
-import Pagination from '@/components/Pagination/Pagination';
 import { fetchPosts } from '@/lib/api';
 
 import css from './page.module.css';
@@ -13,6 +12,7 @@ import Modal from '@/components/Modal/Modal';
 import { Post } from '@/types/post';
 import EditPostForm from '@/components/EditPostForm/EditPostForm';
 import CreatePostForm from '@/components/CreatePostForm/CreatePostForm';
+import Pagination from '@/components/Pagination/Pagination';
 
 interface PostsClientProps {
   userId: string;
@@ -48,20 +48,20 @@ export default function PostsClient({ userId }: PostsClientProps) {
     setSearchQuery(newQuery);
   }, 300);
 
-  const totalPages = Math.ceil(data.totalCount / 8);
+  const totalPages = data?.totalCount ? Math.ceil(data.totalCount / 8) : 0;
   const posts = data?.posts ?? [];
 
   return (
     <div className={css.app}>
-      <main className={css.main}>
-        <section className={css.postsSection}>
+      <div className={css.main}>
+        <div className={css.postsSection}>
           <header className={css.toolbar}>
             <SearchBox onSearch={changeSearchQuery} />
             {totalPages > 1 && (
               <Pagination
                 totalPages={totalPages}
                 currentPage={currentPage}
-                onPageChange={setCurrentPage}
+                onPageChange={(selected) => setCurrentPage(selected)}
               />
             )}
 
@@ -92,8 +92,8 @@ export default function PostsClient({ userId }: PostsClientProps) {
           {posts.length > 0 && (
             <PostList posts={posts} toggleModal={toggleModal} toggleEditPost={toggleEditPost} />
           )}
-        </section>
-      </main>
+        </div>
+      </div>
     </div>
   );
 }
