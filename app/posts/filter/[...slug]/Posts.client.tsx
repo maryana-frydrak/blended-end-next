@@ -61,7 +61,7 @@ export default function PostsClient({ userId }: PostsClientProps) {
               <Pagination
                 totalPages={totalPages}
                 currentPage={currentPage}
-                onPageChange={(selected) => setCurrentPage(selected)}
+                onPageChange={(data) => setCurrentPage(data.selected)}
               />
             )}
 
