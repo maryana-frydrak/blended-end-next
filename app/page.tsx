@@ -2,7 +2,7 @@ import css from './page.module.css';
 
 export default function Home() {
   return (
-    <main className={css.main}>
+    <section className={css.main}>
       <div className={css.container}>
         <h1 className={css.title}>Welcome to Postly</h1>
         <p className={css.description}>
@@ -19,6 +19,6 @@ export default function Home() {
           helps you stay focused on what matters.
         </p>
       </div>
-    </main>
+    </section>
   );
 }

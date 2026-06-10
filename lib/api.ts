@@ -64,6 +64,6 @@ export const fetchUsers = async (): Promise<User[]> => {
 };
 
 export const fetchUserById = async (id: number) => {
-  const response = await axios.get<User>(`/users/${id}`);
+  const response = await axios.get<User>(`/posts/${id}`);
   return response.data;
 };
