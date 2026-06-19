@@ -5,9 +5,14 @@ import Container from '@/components/Container/Container';
 import Heading from '@/components/Heading/Heading';
 import css from './page.module.css';
 import ExchangeForm from '@/components/ExchangeForm/ExchangeForm';
+import ExchangeInfo from '@/components/ExchangeInfo/ExchangeInfo';
+import { useCurrencyStore } from '@/lib/stores/currencyStore';
+import Loader from '@/components/Loader/Loader';
 
 export default function Home() {
-  const isError = false;
+  const isError = useCurrencyStore((state) => state.isError);
+  const isLoading = useCurrencyStore((state) => state.isLoading);
+  const info = useCurrencyStore((state) => state.exchangeInfo);
 
   return (
     <main className={css.main}>
@@ -21,6 +26,7 @@ export default function Home() {
             error={false}
           />
           <ExchangeForm />
+          {info && <ExchangeInfo {...info} />}
           {isError && (
             <Heading
               error
@@ -30,6 +36,7 @@ export default function Home() {
               bottom={false}
             />
           )}
+          {isLoading && <Loader />}
         </Container>
       </Section>
     </main>
