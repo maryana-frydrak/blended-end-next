@@ -7,9 +7,10 @@ interface HeadingProps {
   bottom?: boolean;
   error?: boolean;
   info?: boolean;
+  children?: React.ReactNode;
 }
 
-export default function Heading({ title, top, bottom, error, info }: HeadingProps) {
+export default function Heading({ title, top, bottom, error, info, children }: HeadingProps) {
   let className = styles.title;
 
   if (top) className += ` ${styles.top}`;
@@ -17,5 +18,10 @@ export default function Heading({ title, top, bottom, error, info }: HeadingProp
   if (error) className += ` ${styles.error}`;
   if (info) className += ` ${styles.info}`;
 
-  return <h2 className={className}>{title}</h2>;
+  return (
+    <>
+      <h2 className={className}>{title}</h2>;
+      {children && <div className="heading-addon">{children}</div>}
+    </>
+  );
 }

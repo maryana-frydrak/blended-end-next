@@ -16,12 +16,14 @@ type CurrencyState = {
   isLoading: boolean;
   isError: string | null;
   rates: [string, number][];
+  filter: string;
   setBaseCurrency: (currency: string) => void;
   setHasHydrated: (stateHydrated: boolean) => void;
   setEchangeInfo: (info: null | ExchangeInfo) => void;
   setIsLoading: (loading: boolean) => void;
   setIsError: (error: null | string) => void;
   setRates: (rates: [string, number][]) => void;
+  setFilter: (filter: string) => void;
 };
 
 export const useCurrencyStore = create<CurrencyState>()(
@@ -33,6 +35,7 @@ export const useCurrencyStore = create<CurrencyState>()(
       isLoading: false,
       isError: null,
       rates: [],
+      filter: '',
 
       setBaseCurrency: (currency) =>
         set({
@@ -46,6 +49,7 @@ export const useCurrencyStore = create<CurrencyState>()(
       setIsLoading: (loading) => set({ isLoading: loading }),
       setIsError: (error) => set({ isError: error }),
       setRates: (rates) => set({ rates: rates }),
+      setFilter: (filter) => set({ filter: filter }),
     }),
     {
       name: 'currency-storage',
