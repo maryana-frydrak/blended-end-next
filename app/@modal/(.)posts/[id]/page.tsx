@@ -16,7 +16,7 @@ export default async function PostPreview({ params }: PostPreviewProps) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <PostPreviewClient />
+      <PostPreviewClient id={id} />
     </HydrationBoundary>
   );
 }
